@@ -45,6 +45,6 @@ it('allows user to click on a user-item, and go to user-page', async () => {
   // click the link, and check that it called push() correctly
   fireEvent.click(await screen.findByText(users[0].login))
   expect(push).toHaveBeenCalledTimes(1)
-  // similar to toHaveBeenCalledWith(), but I don't care abotu other params
+  // similar to toHaveBeenCalledWith(), but I don't care about other params
   expect(push.mock.calls[0][0]).toBe(`/user/${users[0].login}`)
 })
