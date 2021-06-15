@@ -2,6 +2,8 @@
 
 This is a simple nextjs/graphql demo-project, complete with integration-tests, graphql-playground & deployment.
 
+A demo deployment is [here](https://next-graphql-vercel.vercel.app)
+
 ```sh
 # install tools and libraries
 npm i

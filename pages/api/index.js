@@ -47,7 +47,19 @@ export const resolvers = {
   }
 }
 
-export const server = new ApolloServer({ typeDefs, resolvers })
+export const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  path: '/api',
+  introspection: true,
+  debug: true,
+  uploads: false,
+  playground: {
+    settings: {
+      'request.credentials': 'include'
+    }
+  }
+})
 export const config = {
   api: {
     bodyParser: false
