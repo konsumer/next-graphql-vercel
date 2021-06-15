@@ -1,3 +1,5 @@
+// Integration test for Index page
+
 /* global jest beforeAll afterEach afterAll it expect */
 
 import React from 'react'
@@ -32,6 +34,7 @@ it('shows getUsers', async () => {
 })
 
 it('allows user to click on a user-item, and go to user-page', async () => {
+  // mock push, so we can check link called with correct path
   const push = jest.fn().mockResolvedValue(true)
 
   render(

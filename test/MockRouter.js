@@ -1,4 +1,4 @@
-/* You can mock NextJS router with this component, and override all params as props */
+// mock NextJS router with this component, and override all params as props
 
 import React from 'react'
 import { RouterContext } from 'next/dist/next-server/lib/router-context'

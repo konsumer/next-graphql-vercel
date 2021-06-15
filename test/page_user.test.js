@@ -1,3 +1,5 @@
+// Integration test for User page
+
 /* global beforeAll afterEach afterAll it expect */
 
 import React from 'react'
