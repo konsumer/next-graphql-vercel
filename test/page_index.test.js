@@ -10,6 +10,7 @@ import { setupServer } from 'msw/node'
 import MockRouter from './MockRouter'
 import users from './users.json'
 import PageIndex from '../pages/index'
+import DataProvider from '../lib/DataProvider'
 
 // mock graphql for all tests in this file
 const handlers = []
@@ -28,7 +29,11 @@ afterEach(() => server.resetHandlers())
 afterAll(() => server.close())
 
 it('shows user-list', async () => {
-  render(<PageIndex />)
+  render(
+    <DataProvider>
+      <PageIndex />
+    </DataProvider>
+  )
   expect(await screen.findByText(users[0].login)).toBeVisible()
 })
 
@@ -38,7 +43,9 @@ it('allows user to click on a user-item, and go to user-page', async () => {
 
   render(
     <MockRouter push={push}>
-      <PageIndex />
+      <DataProvider>
+        <PageIndex />
+      </DataProvider>
     </MockRouter>
   )
 
