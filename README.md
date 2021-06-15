@@ -9,9 +9,9 @@ npm i
 # run tests
 npm test
 
-# run local development server
+# run local development-server
 npm start
 
-# dpeloy on vercel
+# deploy on vercel
 npm run deploy
 ```
