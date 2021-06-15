@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "test": "jest",
+    "test": "jest -c test/jest.config.js",
     "start": "next dev",
     "deploy": "vercel --prod"
   },
@@ -22,5 +22,10 @@
     "msw": "^0.29.0",
     "vercel": "^23.0.0",
     "whatwg-fetch": "^3.6.2"
+  },
+  "babel": {
+    "presets": [
+      "next/babel"
+    ]
   }
 }
