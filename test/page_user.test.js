@@ -56,6 +56,5 @@ it('deletes a user', async () => {
     </MockRouter>
   )
   fireEvent.click(await screen.findByText('Delete'))
-  expect(deleteHandler.mock.calls.length).toBe(1)
-  expect(deleteHandler.mock.calls[0][0]).toBe(users[0].login)
+  expect(deleteHandler).toHaveBeenCalledWith(users[0].login)
 })
