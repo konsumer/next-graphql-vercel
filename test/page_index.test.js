@@ -3,8 +3,7 @@
 /* global jest beforeAll afterEach afterAll it expect */
 
 import React from 'react'
-import { render, screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
+import { render, screen, fireEvent } from '@testing-library/react'
 import { graphql } from 'msw'
 import { setupServer } from 'msw/node'
 
@@ -44,7 +43,7 @@ it('allows user to click on a user-item, and go to user-page', async () => {
   )
 
   // click the link, and check that it called push() correctly
-  userEvent.click(await screen.findByText(users[0].login))
+  fireEvent.click(await screen.findByText(users[0].login))
   expect(push.mock.calls.length).toBe(1)
   expect(push.mock.calls[0][0]).toBe(`/user/${users[0].login}`)
 })

@@ -3,8 +3,7 @@
 /* global jest beforeAll afterEach afterAll it expect */
 
 import React from 'react'
-import { render, screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
+import { render, screen, fireEvent } from '@testing-library/react'
 import { graphql } from 'msw'
 import { setupServer } from 'msw/node'
 
@@ -49,13 +48,14 @@ it('shows a user', async () => {
   expect(await screen.findByText(users[0].login)).toBeVisible()
 })
 
+// TODO: broken. this is firing the msw callback after the check of the mock
 it('deletes a user', async () => {
   render(
     <MockRouter query={{ userId: users[0].login }}>
       <PageUser />
     </MockRouter>
   )
-  userEvent.click(await screen.findByText('Delete'))
+  fireEvent.click(await screen.findByText('Delete'))
   expect(deleteHandler.mock.calls.length).toBe(1)
   expect(deleteHandler.mock.calls[0][0]).toBe(users[0].login)
 })
