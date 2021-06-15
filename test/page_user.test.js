@@ -3,7 +3,7 @@
 /* global jest beforeAll afterEach afterAll it expect */
 
 import React from 'react'
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import { graphql } from 'msw'
 import { setupServer } from 'msw/node'
 
@@ -56,5 +56,5 @@ it('deletes a user', async () => {
     </MockRouter>
   )
   fireEvent.click(await screen.findByText('Delete'))
-  expect(deleteHandler).toHaveBeenCalledWith(users[0].login)
+  await waitFor(() => expect(deleteHandler).toHaveBeenCalledWith(users[0].login))
 })
