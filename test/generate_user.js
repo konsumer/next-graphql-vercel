@@ -11,4 +11,4 @@ for (let i = 0; i < 10; i++) {
 }
 
 console.log(out)
-writeFileSync('test/user.json', JSON.stirngify(out, null, 2))
+writeFileSync('test/users.json', JSON.stirngify(out, null, 2))
