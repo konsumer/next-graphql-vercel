@@ -10,13 +10,20 @@ type  User {
 }
 
 type  Query {
+  # get all users
   getUsers: [User]
+
+  # get a single user by name
   getUser(name: String!): User!
 }
 
 
 type Mutation {
+  # delete a user by name
   deleteUser(name: String!): User!
+
+  # reffresh the mock users on system
+  refreshMock: Boolean
 }
 
 `
@@ -43,6 +50,9 @@ export const resolvers = {
       const user = resolvers.Query.getUser(o, { name })
       users = users.filter(u => u.login !== name)
       return user
+    },
+    refreshMock () {
+      users = [...usersMock]
     }
   }
 }

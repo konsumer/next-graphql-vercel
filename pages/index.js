@@ -1,8 +1,7 @@
+/* global alert */
 import React from 'react'
-import { useQuery } from 'urql'
+import { useQuery, useMutation } from 'urql'
 import Link from 'next/link'
-
-import Page from '../lib/Page'
 
 const GET_USERS = `
 query GET_USERS {
@@ -13,8 +12,15 @@ query GET_USERS {
 } 
 `
 
+const REFRESH_MOCK = `
+  mutation REFRESH_MOCK {
+    refreshMock
+  }
+`
+
 const PageIndex = () => {
   const [{ data, error, fetching }] = useQuery({ query: GET_USERS })
+  const [refreshState, refreshMock] = useMutation(REFRESH_MOCK)
 
   if (fetching) {
     return (
@@ -28,6 +34,15 @@ const PageIndex = () => {
     )
   }
 
+  const handleRefresh = async () => {
+    const { error } = await refreshMock()
+    if (error) {
+      alert(error.message)
+    } else {
+      window.location.reload(true)
+    }
+  }
+
   return (
     <>
       {data?.getUsers && (
@@ -39,14 +54,9 @@ const PageIndex = () => {
           </ul>
         </div>
       )}
+      <button onClick={handleRefresh} disabled={refreshState?.fetching}>Refresh Mock</button>
     </>
   )
 }
 
-const WrappedPage = () => (
-  <Page>
-    <PageIndex />
-  </Page>
-)
-
-export default WrappedPage
+export default PageIndex

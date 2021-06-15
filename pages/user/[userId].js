@@ -3,8 +3,6 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import { useQuery, useMutation } from 'urql'
 
-import Page from '../../lib/Page'
-
 const GET_USER = `
   query GET_USER ($userId: String!) {
     getUser(name: $userId) {
@@ -53,29 +51,21 @@ const PageUser = () => {
   }
 
   return (
-    <Page>
-      <dl>
-        <dt>ID</dt>
-        <dd>{data?.getUser.id}</dd>
+    <dl>
+      <dt>ID</dt>
+      <dd>{data?.getUser.id}</dd>
 
-        <dt>Name</dt>
-        <dd>{data?.getUser.login}</dd>
+      <dt>Name</dt>
+      <dd>{data?.getUser.login}</dd>
 
-        <dt>Image</dt>
-        <dd><img src={data?.getUser.avatar_url} alt='avatar' /></dd>
+      <dt>Image</dt>
+      <dd><img src={data?.getUser.avatar_url} alt='avatar' /></dd>
 
-        <dd>
-          <button onClick={handleDelete} disabled={deleteState?.fetching}>Delete</button>
-        </dd>
-      </dl>
-    </Page>
+      <dd>
+        <button onClick={handleDelete} disabled={deleteState?.fetching}>Delete</button>
+      </dd>
+    </dl>
   )
 }
 
-const WrappedPage = () => (
-  <Page>
-    <PageUser />
-  </Page>
-)
-
-export default WrappedPage
+export default PageUser

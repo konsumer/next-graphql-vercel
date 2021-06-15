@@ -1,0 +1,14 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+}
+
+header {
+  font-size: 50px;
+  background: #eee;
+  padding: 10px;
+}
+
+main {
+  padding: 20px;
+}
