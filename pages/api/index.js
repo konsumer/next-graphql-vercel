@@ -1,6 +1,6 @@
 import { ApolloServer, gql } from 'apollo-server-micro'
 
-import users from '../../test/users.json'
+import usersMock from '../../test/users.json'
 
 export const typeDefs = gql`
 type  User {
@@ -12,7 +12,16 @@ type  User {
 type  Query {
   getUsers: [User]
   getUser(name: String!): User!
-}`
+}
+
+
+type Mutation {
+  deleteUser(name: String!): User!
+}
+
+`
+
+let users = [...usersMock]
 
 // these are example resolvers
 export const resolvers = {
@@ -22,7 +31,18 @@ export const resolvers = {
     },
 
     getUser (o, { name }) {
-      return users.find(row => row.login.toLowerCase() === name.toLowerCase())
+      const user = users.find(row => row.login.toLowerCase() === name.toLowerCase())
+      if (!user) {
+        throw new Error('User not found.')
+      }
+      return user
+    }
+  },
+  Mutation: {
+    deleteUser (o, { name }) {
+      const user = resolvers.Query.getUser(o, { name })
+      users = users.filter(u => u.login !== name)
+      return user
     }
   }
 }
