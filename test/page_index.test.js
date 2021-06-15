@@ -28,7 +28,7 @@ beforeAll(() => server.listen())
 afterEach(() => server.resetHandlers())
 afterAll(() => server.close())
 
-it('shows getUsers', async () => {
+it('shows user-list', async () => {
   render(<PageIndex />)
   expect(await screen.findByText(users[0].login)).toBeVisible()
 })
