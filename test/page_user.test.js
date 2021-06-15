@@ -48,7 +48,6 @@ it('shows a user', async () => {
   expect(await screen.findByText(users[0].login)).toBeVisible()
 })
 
-// TODO: broken. this is firing the msw callback after the check of the mock
 it('deletes a user', async () => {
   render(
     <MockRouter query={{ userId: users[0].login }}>
