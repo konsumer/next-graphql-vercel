@@ -4,7 +4,7 @@ This is a simple nextjs/graphql demo-project, complete with integration-tests, g
 
 A demo deployment is [here](https://next-graphql-vercel.vercel.app)
 
-You can start your own projectm using this as a template:
+You can start your own projects using this as a template:
 
 ```sh
 npx degit konsumer/next-graphql-vercel YOURDIR
