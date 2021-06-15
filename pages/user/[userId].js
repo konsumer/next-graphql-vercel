@@ -2,6 +2,7 @@
 import React from 'react'
 import { useRouter } from 'next/router'
 import { useQuery, useMutation } from 'urql'
+import Head from 'next/head'
 
 const GET_USER = `
   query GET_USER ($userId: String!) {
@@ -51,20 +52,25 @@ const PageUser = () => {
   }
 
   return (
-    <dl>
-      <dt>ID</dt>
-      <dd>{data?.getUser.id}</dd>
+    <>
+      <Head>
+        <title>User: {userId}</title>
+      </Head>
+      <dl>
+        <dt>ID</dt>
+        <dd>{data?.getUser.id}</dd>
 
-      <dt>Name</dt>
-      <dd>{data?.getUser.login}</dd>
+        <dt>Name</dt>
+        <dd>{data?.getUser.login}</dd>
 
-      <dt>Image</dt>
-      <dd><img src={data?.getUser.avatar_url} alt='avatar' /></dd>
+        <dt>Image</dt>
+        <dd><img src={data?.getUser.avatar_url} alt='avatar' /></dd>
 
-      <dd>
-        <button onClick={handleDelete} disabled={deleteState?.fetching}>Delete</button>
-      </dd>
-    </dl>
+        <dd>
+          <button onClick={handleDelete} disabled={deleteState?.fetching}>Delete</button>
+        </dd>
+      </dl>
+    </>
   )
 }
 

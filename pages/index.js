@@ -2,6 +2,7 @@
 import React from 'react'
 import { useQuery, useMutation } from 'urql'
 import Link from 'next/link'
+import Head from 'next/head'
 
 const GET_USERS = `
 query GET_USERS {
@@ -45,6 +46,9 @@ const PageIndex = () => {
 
   return (
     <>
+      <Head>
+        <title>Users</title>
+      </Head>
       {data?.getUsers && (
         <div>
           <ul>
